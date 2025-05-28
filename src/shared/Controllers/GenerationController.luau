@@ -66,6 +66,11 @@ function GenerationController.Start(self: Controller)
                 continue
             end
 
+            local hitbox = models:WaitForChild("Part") :: BasePart
+            hitbox.Touched:Once(function(hit: BasePart)
+                self:_collectRing(models)
+            end)
+
             ringMesh.Transparency = 0
         end
 
