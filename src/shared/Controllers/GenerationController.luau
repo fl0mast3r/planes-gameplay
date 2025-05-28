@@ -27,7 +27,7 @@ local GenerationController = {
         [1] = {
             Distance = {120, 150},
             Spread = {-10, 10},
-            Rotation = {-2.5, 2.5},
+            Rotation = {-0.1, 0.1},
             Quantity = 10,
             Wind = Vector3.new(0, 0, 0),
         },
@@ -35,7 +35,7 @@ local GenerationController = {
         [2] = {
             Distance = {120, 150},
             Spread = {-20, 20},
-            Rotation = {-4, 4},
+            Rotation = {-1, 1},
             Quantity = 20,
             Wind = Vector3.new(math.random(25, 50), 0, math.random(25, 50)),
         },
@@ -43,7 +43,7 @@ local GenerationController = {
         [3] = {
             Distance = {100, 130},
             Spread = {-30, 30},
-            Rotation = {-7.5, 7.5},
+            Rotation = {-2.5, 2.5},
             Quantity = 30,
             Wind = Vector3.new(math.random(50, 100), 0, math.random(50, 100)),
         },
@@ -96,7 +96,7 @@ function GenerationController._createRing(self: Controller, iteration: number, p
     local spreadData = self.SpawnConfig[data.Parameters.RingsSpread].Spread
     local rotationData = self.SpawnConfig[data.Parameters.RingsSpread].Rotation
 
-    local newCFrame: CFrame = position + position.UpVector*math.random(spreadData[1], spreadData[2]) + position.LookVector*math.random(distanceData[1], distanceData[2]) + position.RightVector*math.random(spreadData[1], spreadData[2])
+    local newCFrame: CFrame = position + position.UpVector*math.max(math.random(spreadData[1], spreadData[2]), 0) + position.LookVector*math.random(distanceData[1], distanceData[2]) + position.RightVector*math.random(spreadData[1], spreadData[2])
     newCFrame *= CFrame.fromEulerAnglesXYZ(0, math.rad(math.random(rotationData[1], rotationData[2])), 0)
     
     local newRing = RingModel:Clone()
