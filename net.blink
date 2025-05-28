@@ -1,0 +1,16 @@
+-- these can be ignored if you are using the studio plugin
+option ClientOutput = "src/shared/ClientNet.luau"
+option ServerOutput = "src/server/ServerNet.luau"
+option PromiseLibrary = "ReplicatedStorage.Packages.TypedPromise"
+
+event Respawn {
+    from: Client,
+    type: Reliable,
+    call: SingleSync,
+}
+
+function Spawn {
+    Yield: Promise,
+    Data: string,
+    Return: Instance(Model)?
+}
